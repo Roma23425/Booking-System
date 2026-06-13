@@ -1,0 +1,8 @@
+<h1>Rooms</h1>
+
+{% for room in rooms %}
+<div>
+  <h3>{{ room.name }}</h3>
+  <a href="/room/{{ room.id }}/">View</a>
+</div>
+{% endfor %}
