@@ -1,6 +1,26 @@
-<h1>Booking for {{ room.name }}</h1>
+{% extends "base.html" %} {% block content %}
 
-<form method="POST">
-  {% csrf_token %} {{ form.as_p }}
-  <button type="submit">Book</button>
-</form>
+<div class="card shadow">
+  <div class="card-body">
+    <h2 class="mb-4">Бронювання кімнати: {{ room.name }}</h2>
+
+    <form method="post">
+      {% csrf_token %}
+
+      <div class="mb-3">{{ form.as_p }}</div>
+
+      <button type="submit" class="btn btn-primary btn-lg">
+        Підтвердити бронювання
+      </button>
+
+      <a
+        href="{% url 'room_detail' room.id %}"
+        class="btn btn-secondary btn-lg"
+      >
+        Назад
+      </a>
+    </form>
+  </div>
+</div>
+
+{% endblock %}

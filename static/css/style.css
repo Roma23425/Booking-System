@@ -1,0 +1,33 @@
+body {
+  background-color: #f4f6f9;
+  font-family: Arial, sans-serif;
+}
+
+.navbar-brand {
+  font-size: 25px;
+  font-weight: bold;
+}
+
+.card {
+  border-radius: 15px;
+  border: none;
+  transition: 0.3s;
+}
+
+.card:hover {
+  transform: translateY(-5px);
+}
+
+.btn {
+  border-radius: 20px;
+}
+
+.room-price {
+  color: #198754;
+  font-size: 20px;
+  font-weight: bold;
+}
+
+.container {
+  margin-top: 30px;
+}

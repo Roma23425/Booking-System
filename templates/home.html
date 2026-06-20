@@ -1,8 +1,35 @@
-<h1>Rooms</h1>
+{% extends "base.html" %} {% block content %}
 
-{% for room in rooms %}
-<div>
-  <h3>{{ room.name }}</h3>
-  <a href="/room/{{ room.id }}/">View</a>
+<h1 class="text-center mb-5">Доступні кімнати</h1>
+
+<div class="row">
+  {% for room in rooms %}
+
+  <div class="col-md-4 mb-4">
+    <div class="card shadow h-100">
+      <div class="card-body">
+        <h4 class="card-title">{{ room.name }}</h4>
+
+        <p class="card-text">{{ room.description }}</p>
+
+        <ul class="list-group list-group-flush mb-3">
+          <li class="list-group-item">👥 Місткість: {{ room.capacity }}</li>
+
+          <li class="list-group-item">💰 Ціна: {{ room.price }} грн</li>
+        </ul>
+
+        <a href="{% url 'room_detail' room.id %}" class="btn btn-primary w-100">
+          Детальніше
+        </a>
+      </div>
+    </div>
+  </div>
+
+  {% empty %}
+
+  <div class="alert alert-warning">Кімнат поки немає</div>
+
+  {% endfor %}
 </div>
-{% endfor %}
+
+{% endblock %}

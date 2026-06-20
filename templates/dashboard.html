@@ -1,0 +1,94 @@
+{% extends "base.html" %} {% block content %}
+
+<div class="row mb-4">
+  <div class="col-md-12">
+    <div class="card shadow bg-primary text-white">
+      <div class="card-body">
+        <h2>👤 Вітаємо, {{ user.username }}</h2>
+
+        <p class="mb-0">Ваш особистий кабінет бронювань</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="row mb-4">
+  <div class="col-md-4">
+    <div class="card shadow text-center">
+      <div class="card-body">
+        <h3>{{ bookings.count }}</h3>
+
+        <p>Всього бронювань</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="col-md-4">
+    <div class="card shadow text-center">
+      <div class="card-body">
+        <h3>🏨</h3>
+
+        <p>Ваші кімнати</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="col-md-4">
+    <div class="card shadow text-center">
+      <div class="card-body">
+        <h3>📅</h3>
+
+        <p>Календар бронювань</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<h2 class="mb-4">Мої бронювання</h2>
+
+<div class="row">
+  {% for booking in bookings %}
+
+  <div class="col-md-6 mb-4">
+    <div class="card shadow">
+      <div class="card-body">
+        <h4>{{ booking.room.name }}</h4>
+
+        <p>📅 Початок: {{ booking.start_time }}</p>
+
+        <p>📅 Кінець: {{ booking.end_time }}</p>
+
+        {% if booking.status == "confirmed" %}
+
+        <span class="badge bg-success"> Підтверджено </span>
+
+        {% elif booking.status == "pending" %}
+
+        <span class="badge bg-warning text-dark"> Очікує </span>
+
+        {% else %}
+
+        <span class="badge bg-danger"> Скасовано </span>
+
+        {% endif %}
+
+        <br /><br />
+
+        <a
+          href="{% url 'room_detail' booking.room.id %}"
+          class="btn btn-primary"
+        >
+          Переглянути кімнату
+        </a>
+      </div>
+    </div>
+  </div>
+
+  {% empty %}
+
+  <div class="alert alert-info">У вас ще немає бронювань.</div>
+
+  {% endfor %}
+</div>
+
+{% endblock %}

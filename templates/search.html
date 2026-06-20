@@ -1,0 +1,54 @@
+{% extends "base.html" %} {% block content %}
+
+<h1 class="text-center mb-4">Пошук кімнат</h1>
+
+<div class="card shadow p-4 mb-4">
+  <form method="get">
+    <div class="mb-3">
+      <label class="form-label">Назва</label>
+      <input type="text" name="name" class="form-control" />
+    </div>
+
+    <div class="mb-3">
+      <label class="form-label">Мін. місткість</label>
+      <input type="number" name="capacity" class="form-control" />
+    </div>
+
+    <div class="mb-3">
+      <label class="form-label">Макс. ціна</label>
+      <input type="number" name="price" class="form-control" />
+    </div>
+
+    <button class="btn btn-primary">Пошук</button>
+  </form>
+</div>
+
+<div class="row">
+  {% for room in rooms %}
+
+  <div class="col-md-4 mb-3">
+    <div class="card shadow">
+      <div class="card-body">
+        <h5>{{ room.name }}</h5>
+
+        <p>{{ room.description }}</p>
+
+        <p>👥 {{ room.capacity }}</p>
+
+        <p>💰 {{ room.price }} грн</p>
+
+        <a href="{% url 'room_detail' room.id %}" class="btn btn-success">
+          Детальніше
+        </a>
+      </div>
+    </div>
+  </div>
+
+  {% empty %}
+
+  <div class="alert alert-warning">Нічого не знайдено</div>
+
+  {% endfor %}
+</div>
+
+{% endblock %}

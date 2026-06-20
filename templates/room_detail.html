@@ -1,7 +1,31 @@
-<h1>{{ room.name }}</h1>
+{% extends "base.html" %} {% block content %}
 
-<p>{{ room.description }}</p>
+<div class="card shadow">
+  <div class="card-body">
+    <h1>{{ room.name }}</h1>
 
-<p>Price: {{ room.price }}</p>
+    <hr />
 
-<a href="/book/{{ room.id }}/">Book</a>
+    <p class="fs-5">{{ room.description }}</p>
+
+    <div class="row">
+      <div class="col-md-6">
+        <div class="alert alert-info">
+          👥 Місткість: {{ room.capacity }} людей
+        </div>
+      </div>
+
+      <div class="col-md-6">
+        <div class="alert alert-success">💰 Ціна: {{ room.price }} грн</div>
+      </div>
+    </div>
+
+    <a href="{% url 'create_booking' room.id %}" class="btn btn-success btn-lg">
+      Забронювати
+    </a>
+
+    <a href="{% url 'home' %}" class="btn btn-secondary btn-lg"> Назад </a>
+  </div>
+</div>
+
+{% endblock %}
